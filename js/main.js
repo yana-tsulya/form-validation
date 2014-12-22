@@ -31,9 +31,8 @@ function validateField(field, errorContainer) {
 
 submitButton.addEventListener('click', function(event) {
 
-    var atpos = email.value.indexOf("@"),
-        dotpos = email.value.lastIndexOf(".");
-    if (((atpos < 1) || (dotpos < atpos + 2) || (dotpos+2 >= email.value.length)) && (email.value.length > 0) && (email.value.length <= 20)) {
+    var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!(regex.test(email.value))) {
         email.classList.add('error');
         emailError.textContent = "Not a valid e-mail address";
         event.preventDefault();
